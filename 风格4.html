@@ -1,7 +1,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google文献搜索</title>
     <style>
@@ -86,14 +85,14 @@
 </style>
   </head>
   <body>
+    <h1>Google文献搜索</h1>
     <form>
       <input type="text" id="searchInput" placeholder="Search...">
       <div class="button-group">
-        <input type="submit" id="searchWithDoiButton" value="Search with doi">
         <input type="submit" id="searchButton" value="Search">
+        <input type="submit" id="searchWithDoiButton" value="Search with doi">
       </div>
     </form>
-     <h1>Google文献搜索</h1>
     <script>
       const searchInput = document.getElementById("searchInput");
       const searchButton = document.getElementById("searchButton");

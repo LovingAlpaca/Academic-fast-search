@@ -1,7 +1,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google文献搜索</title>
     <style>
@@ -67,33 +66,17 @@
   input[type="submit"]:hover {
     background-color: #357ae8;
   }
-
-  @media only screen and (max-width: 600px) {
-    form {
-      padding: 20px;
-    }
-
-    input[type="text"] {
-      height: 50px;
-      font-size: 20px;
-    }
-
-    input[type="submit"] {
-      height: 50px;
-      font-size: 20px;
-    }
-  }
 </style>
   </head>
   <body>
+    <h1>Google文献搜索</h1>
     <form>
       <input type="text" id="searchInput" placeholder="Search...">
       <div class="button-group">
-        <input type="submit" id="searchWithDoiButton" value="Search with doi">
         <input type="submit" id="searchButton" value="Search">
+        <input type="submit" id="searchWithDoiButton" value="Search with doi">
       </div>
     </form>
-     <h1>Google文献搜索</h1>
     <script>
       const searchInput = document.getElementById("searchInput");
       const searchButton = document.getElementById("searchButton");
@@ -112,11 +95,11 @@
 
       searchWithDoiButton.addEventListener("click", async (event) => {
         event.preventDefault();
-        const searchTerm = searchInput.value;
+        const searchTerm = searchInput.value + " doi";
         const response = await fetch(`${API_ENDPOINT}?q=${searchTerm}&target=en&key=${API_KEY}`);
         const data = await response.json();
         const translatedText = data.data.translations[0].translatedText;
-        window.location.href = `https://www.google.com/search?q=${translatedText}+doi`;
+        window.location.href = `https://www.google.com/search?q=${translatedText}`;
       });
     </script>
   </body>

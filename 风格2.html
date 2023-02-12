@@ -1,7 +1,6 @@
 <html>
   <head>
     <meta charset="UTF-8">
-     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google文献搜索</title>
     <style>
@@ -27,33 +26,25 @@
     border-radius: 20px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 90%;
     max-width: 600px;
   }
 
   input[type="text"] {
-    width: 100%;
+    width: 70%;
     height: 60px;
     border: none;
-    border-radius: 40px;
+    border-radius: 40px 0px 0px 40px;
     padding-left: 40px;
     font-size: 24px;
     outline: none;
     background-color: #444;
     color: white;
-    margin-bottom: 20px;
-  }
-
-  .button-group {
-    display: flex;
-    justify-content: center;
-    width: 100%;
   }
 
   input[type="submit"] {
-    width: 48%;
+    width: 30%;
     height: 60px;
     border: none;
     border-radius: 40px;
@@ -61,39 +52,21 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
-    margin-right: 4%;
+    margin-left: 20px;
   }
 
   input[type="submit"]:hover {
     background-color: #357ae8;
   }
-
-  @media only screen and (max-width: 600px) {
-    form {
-      padding: 20px;
-    }
-
-    input[type="text"] {
-      height: 50px;
-      font-size: 20px;
-    }
-
-    input[type="submit"] {
-      height: 50px;
-      font-size: 20px;
-    }
-  }
 </style>
   </head>
   <body>
+    <h1>Google文献搜索</h1>
     <form>
       <input type="text" id="searchInput" placeholder="Search...">
-      <div class="button-group">
-        <input type="submit" id="searchWithDoiButton" value="Search with doi">
-        <input type="submit" id="searchButton" value="Search">
-      </div>
+      <input type="submit" id="searchButton" value="Search">
+      <input type="submit" id="searchWithDoiButton" value="Search with doi">
     </form>
-     <h1>Google文献搜索</h1>
     <script>
       const searchInput = document.getElementById("searchInput");
       const searchButton = document.getElementById("searchButton");
@@ -112,11 +85,11 @@
 
       searchWithDoiButton.addEventListener("click", async (event) => {
         event.preventDefault();
-        const searchTerm = searchInput.value;
+        const searchTerm = searchInput.value + " doi";
         const response = await fetch(`${API_ENDPOINT}?q=${searchTerm}&target=en&key=${API_KEY}`);
         const data = await response.json();
         const translatedText = data.data.translations[0].translatedText;
-        window.location.href = `https://www.google.com/search?q=${translatedText}+doi`;
+        window.location.href = `https://www.google.com/search?q=${translatedText}`;
       });
     </script>
   </body>

@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <h1>Google文献搜索</h1>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="searchInput" placeholder="Search...">
+      <input type="submit" value="Search">
+    </form>
+    <script>
+      const searchInput = document.getElementById("searchInput");
+      const API_KEY = "AIzaSyAfdA8EdpQ1jPKu1nxeWqkwX4w_vbTrL38";
+      const API_ENDPOINT = `https://translation.googleapis.com/language/translate/v2`;
+
+      document.querySelector("form").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const searchTerm = searchInput.value + " doi";
+        const response = await fetch(`${API_ENDPOINT}?q=${searchTerm}&target=en&key=${API_KEY}`);
+        const data = await response.json();
+        const translatedText = data.data.translations[0].translatedText;
+        window.location.href = `https://www.google.com/search?q=${translatedText}`;
+      });
+    </script>
+  </body>
+</html>
